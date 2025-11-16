@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app
+        image: busybox
+        command: ["sleep", "3600"]
+        env:
+          - name: TZ
+            value: "Australia/Sydney"
+          - name: APP_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: app-secret
+                key: app_username
+          - name: APP_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: app-secret
+                key: app_password
+        ports:
+          - containerPort: 1234
+            protocol: TCP
+        volumeMounts:
+          - name: localtime
+            mountPath: /etc/localtime
+            readOnly: true
+          - name: tmp-cache
+            mountPath: /cache
+          - name: docker-volumes-apps
+            mountPath: /data
+            subPath: my-app/data
+      volumes:
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+            type: File
+        - name: tmp-cache
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+        - name: docker-volumes-apps
+          persistentVolumeClaim:
+            claimName: docker-volumes-apps-intree-nfs-pvc
