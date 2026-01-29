@@ -11,7 +11,10 @@ spec:
     - name: {{ .name }}
       port: {{ .containerPort }}
       targetPort: {{ .containerPort }}
-      protocol: {{ .protocol }}
+      protocol: {{ .protocol | default "TCP" }}
+      {{- if eq $.Values.service.type "NodePort" }}
+      nodePort: {{ default .containerPort .nodePort }}
+      {{- end }}
   {{- end }}
   selector:
     {{- include "syncthing.selectorLabels" . | nindent 4 }}

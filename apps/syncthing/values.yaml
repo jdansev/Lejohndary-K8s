@@ -51,22 +51,26 @@ securityContext: {}
 
 # This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
 service:
-  type: LoadBalancer
+  type: NodePort
   ports:
     - name: http
       containerPort: 8384
+      nodePort: 30084
       protocol: TCP
 
     - name: sync-tcp
       containerPort: 22000
+      nodePort: 32000
       protocol: TCP
 
     - name: sync-udp
       containerPort: 22000
+      nodePort: 32001
       protocol: UDP
 
     - name: discovery-udp
       containerPort: 21027
+      nodePort: 32127
       protocol: UDP
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
