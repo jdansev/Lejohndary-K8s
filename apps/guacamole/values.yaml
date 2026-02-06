@@ -162,6 +162,9 @@ affinity: {}
 env:
   - name: GUACD_HOSTNAME
     value: "guacamole-guacd"
+  - name: GUACD_PORT
+    value: "4822"
+
   - name: MYSQL_HOSTNAME
     value: "guacamole-mariadb"
 
