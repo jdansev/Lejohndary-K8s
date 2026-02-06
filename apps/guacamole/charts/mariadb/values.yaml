@@ -163,9 +163,9 @@ autoscaling:
 
 # Additional volumes on the output Deployment definition.
 volumes:
-  - name: docker-volumes-apps
-    persistentVolumeClaim:
-      claimName: docker-volumes-apps-intree-nfs-pvc
+  # - name: docker-volumes-apps
+  #   persistentVolumeClaim:
+  #     claimName: docker-volumes-apps-intree-nfs-pvc
   - name: initdb
     configMap:
       name: guacamole-mariadb-initdb
@@ -176,9 +176,9 @@ volumes:
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
-  - name: docker-volumes-apps
-    mountPath: /var/lib/mysql
-    subPath: guacamole/mariadb
+  # - name: docker-volumes-apps
+  #   mountPath: /var/lib/mysql
+  #   subPath: guacamole/mariadb
   - name: initdb
     mountPath: /docker-entrypoint-initdb.d
     readOnly: true
