@@ -165,3 +165,7 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+env:
+  - name: PASSWORD
+    value: "flame_password"
