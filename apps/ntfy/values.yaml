@@ -159,6 +159,10 @@ volumeMounts:
   - name: docker-volumes-apps
     mountPath: /etc/ntfy
     subPath: ntfy/etc
+  - name: ntfy-config
+    mountPath: /etc/ntfy/server.yml
+    subPath: server.yml
+    readOnly: true
   # - name: foo
   #   mountPath: "/etc/foo"
   #   readOnly: true
@@ -174,3 +178,7 @@ args: ["serve"]
 env:
   - name: TZ
     value: "Australia/Sydney"
+
+config:
+  baseUrl: https://ntfy.lejohndary.com
+  upstreamBaseUrl: https://ntfy.sh
