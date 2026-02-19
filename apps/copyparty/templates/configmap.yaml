@@ -18,4 +18,4 @@ data:
     [/]
       /data               # Expose /data as the root volume
       accs:
-        rwda: jdansev     # Give user 'jdansev' read/write/delete/admin permissions on this volume
+        rwdma: jdansev     # Give user 'jdansev' read/write/delete/admin permissions on this volume
