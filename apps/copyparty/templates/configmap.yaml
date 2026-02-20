@@ -15,6 +15,11 @@ data:
     [accounts]
       jdansev: copyparty_password
 
+    [/homes]
+      /homes
+      accs:
+        rwdma: jdansev
+
     [/docker-volumes-apps]
       /docker-volumes-apps
       accs:
@@ -42,10 +47,5 @@ data:
 
     [/docker-volumes-misc]
       /docker-volumes-misc
-      accs:
-        rwdma: jdansev
-
-    [/homes]
-      /homes
       accs:
         rwdma: jdansev
