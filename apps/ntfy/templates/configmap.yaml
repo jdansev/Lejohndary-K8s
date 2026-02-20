@@ -4,5 +4,5 @@ metadata:
   name: {{ include "ntfy.fullname" . }}-config
 data:
   server.yml: |
-    base-url: {{ .Values.config.baseUrl}}
-    upstream-base-url: {{ .Values.config.upstreamBaseUrl}}
+    base-url: {{ .Values.config.baseUrl }}
+    upstream-base-url: {{ .Values.config.upstreamBaseUrl }}
