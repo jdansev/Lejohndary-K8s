@@ -143,29 +143,53 @@ autoscaling:
 
 # Additional volumes on the output Deployment definition.
 volumes:
+  - name: docker-volumes-apps
+    persistentVolumeClaim:
+      claimName: docker-volumes-apps-intree-nfs-pvc
+  - name: docker-volumes-data
+    persistentVolumeClaim:
+      claimName: docker-volumes-data-intree-nfs-pvc
+  - name: docker-volumes-dev
+    persistentVolumeClaim:
+      claimName: docker-volumes-dev-intree-nfs-pvc
   - name: docker-volumes-files
     persistentVolumeClaim:
       claimName: docker-volumes-files-intree-nfs-pvc
-  # - name: foo
-  #   secret:
-  #     secretName: mysecret
-  #     optional: false
+  - name: docker-volumes-media
+    persistentVolumeClaim:
+      claimName: docker-volumes-media-intree-nfs-pvc
+  - name: docker-volumes-misc
+    persistentVolumeClaim:
+      claimName: docker-volumes-misc-intree-nfs-pvc
+  - name: homes
+    persistentVolumeClaim:
+      claimName: homes-intree-nfs-pvc
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
   - name: docker-volumes-files
     mountPath: /cfg/hists
     subPath: copyparty/hists
+
+  - name: docker-volumes-apps
+    mountPath: /docker-volumes-apps
+  - name: docker-volumes-data
+    mountPath: /docker-volumes-data
+  - name: docker-volumes-dev
+    mountPath: /docker-volumes-dev
   - name: docker-volumes-files
-    mountPath: /data
-    subPath: copyparty/data
+    mountPath: /docker-volumes-files
+  - name: docker-volumes-media
+    mountPath: /docker-volumes-media
+  - name: docker-volumes-misc
+    mountPath: /docker-volumes-misc
+  - name: homes
+    mountPath: /homes
+
   - name: copyparty-config
     mountPath: /cfg/config.conf
     subPath: copyparty.conf
     readOnly: true
-  # - name: foo
-  #   mountPath: "/etc/foo"
-  #   readOnly: true
 
 nodeSelector: {}
 

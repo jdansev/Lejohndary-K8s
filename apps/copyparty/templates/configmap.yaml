@@ -13,9 +13,39 @@ data:
       rproxy: 1
 
     [accounts]
-      jdansev: copyparty_password  # Create a user named jdansev with password
+      jdansev: copyparty_password
 
-    [/]
-      /data               # Expose /data as the root volume
+    [/docker-volumes-apps]
+      /docker-volumes-apps
       accs:
-        rwdma: jdansev     # Give user 'jdansev' read/write/delete/admin permissions on this volume
+        rwdma: jdansev
+
+    [/docker-volumes-data]
+      /docker-volumes-data
+      accs:
+        rwdma: jdansev
+
+    [/docker-volumes-dev]
+      /docker-volumes-dev
+      accs:
+        rwdma: jdansev
+
+    [/docker-volumes-files]
+      /docker-volumes-files
+      accs:
+        rwdma: jdansev
+
+    [/docker-volumes-media]
+      /docker-volumes-media
+      accs:
+        rwdma: jdansev
+
+    [/docker-volumes-misc]
+      /docker-volumes-misc
+      accs:
+        rwdma: jdansev
+
+    [/homes]
+      /homes
+      accs:
+        rwdma: jdansev
