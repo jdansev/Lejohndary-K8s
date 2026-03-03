@@ -164,7 +164,7 @@ volumeMounts:
     subPath: my-media/movies
   - name: docker-volumes-apps
     mountPath: /downloads
-    subPath: qbittorrent/downloads
+    subPath: sabnzbd/downloads
   # - name: foo
   #   mountPath: "/etc/foo"
   #   readOnly: true
