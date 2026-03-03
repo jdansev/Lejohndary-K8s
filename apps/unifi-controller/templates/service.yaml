@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "unifi-controller.fullname" . }}
+  labels:
+    {{- include "unifi-controller.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+  {{- range .Values.service.ports }}
+    - name: {{ .name }}
+      port: {{ .containerPort }}
+      targetPort: {{ .containerPort }}
+      protocol: {{ .protocol | default "TCP" }}
+      {{- if eq $.Values.service.type "NodePort" }}
+      nodePort: {{ default .containerPort .nodePort }}
+      {{- end }}
+  {{- end }}
+  selector:
+    {{- include "unifi-controller.selectorLabels" . | nindent 4 }}
