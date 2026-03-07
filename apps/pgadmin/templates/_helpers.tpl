@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "changedetection.name" -}}
+{{- define "pgadmin.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "changedetection.fullname" -}}
+{{- define "pgadmin.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "changedetection.chart" -}}
+{{- define "pgadmin.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "changedetection.labels" -}}
-helm.sh/chart: {{ include "changedetection.chart" . }}
-{{ include "changedetection.selectorLabels" . }}
+{{- define "pgadmin.labels" -}}
+helm.sh/chart: {{ include "pgadmin.chart" . }}
+{{ include "pgadmin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "changedetection.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "changedetection.name" . }}
+{{- define "pgadmin.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "pgadmin.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "changedetection.serviceAccountName" -}}
+{{- define "pgadmin.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "changedetection.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "pgadmin.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

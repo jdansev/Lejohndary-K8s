@@ -1,0 +1,9 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: my-postgresql-cluster
+spec:
+  instances: 3
+  storage:
+    size: 25Gi
+    storageClass: local-postgresql

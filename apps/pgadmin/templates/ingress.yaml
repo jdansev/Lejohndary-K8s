@@ -2,9 +2,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "changedetection.fullname" . }}
+  name: {{ include "pgadmin.fullname" . }}
   labels:
-    {{- include "changedetection.labels" . | nindent 4 }}
+    {{- include "pgadmin.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -35,7 +35,7 @@ spec:
             {{- end }}
             backend:
               service:
-                name: {{ include "changedetection.fullname" $ }}
+                name: {{ include "pgadmin.fullname" $ }}
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}
