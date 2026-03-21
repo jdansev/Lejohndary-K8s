@@ -1,0 +1,22 @@
+apiVersion: kubeadm.k8s.io/v1beta4
+kind: ClusterConfiguration
+kubernetesVersion: "1.35.2"
+controlPlaneEndpoint: "k8s-cp1:6443"
+networking:
+  podSubnet: "10.244.0.0/16"
+apiServer:
+  certSANs:
+    - "192.168.1.11"
+    - "192.168.1.12"
+    - "192.168.1.13"
+    - "k8s-cp1"
+    - "k8s-cp2"
+    - "k8s-cp3"
+    - "127.0.0.1"
+    - "localhost"
+---
+apiVersion: kubeadm.k8s.io/v1beta4
+kind: InitConfiguration
+localAPIEndpoint:
+  advertiseAddress: "192.168.1.11"
+  bindPort: 6443
