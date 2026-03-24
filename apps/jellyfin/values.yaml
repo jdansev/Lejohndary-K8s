@@ -153,12 +153,12 @@ volumes:
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
-  - name: docker-volumes-media
-    mountPath: /config
-    subPath: jellyfin/config
-  - name: docker-volumes-media
-    mountPath: /cache
-    subPath: jellyfin/cache
+  # - name: docker-volumes-media
+  #   mountPath: /config
+  #   subPath: jellyfin/config
+  # - name: docker-volumes-media
+  #   mountPath: /cache
+  #   subPath: jellyfin/cache
   - name: docker-volumes-media
     mountPath: /media
     subPath: my-media

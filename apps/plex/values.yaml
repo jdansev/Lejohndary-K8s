@@ -11,7 +11,7 @@ image:
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.42.2"
+  tag: "1.43.0"
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
@@ -156,9 +156,9 @@ volumes:
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
-  - name: docker-volumes-media
-    mountPath: /config
-    subPath: plex/config
+  # - name: docker-volumes-media
+  #   mountPath: /config
+  #   subPath: plex/config
   - name: docker-volumes-media
     mountPath: /media
     subPath: my-media
@@ -181,3 +181,5 @@ env:
     value: "all"
   - name: NVIDIA_DRIVER_CAPABILITIES
     value: "compute,video,utility"
+  - name: PLEX_CLAIM
+    value: "claim-3JtkHRFztycbgyGWB7x9"
