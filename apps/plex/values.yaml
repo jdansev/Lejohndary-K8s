@@ -182,4 +182,4 @@ env:
   - name: NVIDIA_DRIVER_CAPABILITIES
     value: "compute,video,utility"
   - name: PLEX_CLAIM
-    value: "claim-3JtkHRFztycbgyGWB7x9"
+    value: "claim-Bw4SvHTqdQ4WQgEK5161"

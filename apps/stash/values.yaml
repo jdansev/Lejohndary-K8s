@@ -11,7 +11,7 @@ image:
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.30.1"
+  tag: "v0.31.1"
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
@@ -164,8 +164,8 @@ volumeMounts:
     mountPath: /root/.stash
     subPath: stash/config
   - name: docker-volumes-media
-    mountPath: /data
-    subPath: stash/data
+    mountPath: /videos
+    subPath: stash/videos
   - name: docker-volumes-media
     mountPath: /metadata
     subPath: stash/metadata
@@ -181,6 +181,11 @@ volumeMounts:
   # - name: foo
   #   mountPath: "/etc/foo"
   #   readOnly: true
+
+  # - name: stash-config
+  #   mountPath: /root/.stash/config.yml
+  #   subPath: stash.conf
+  #   readOnly: false
 
 nodeSelector: {}
 
