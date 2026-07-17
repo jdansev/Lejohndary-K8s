@@ -1,9 +1,11 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: my-postgresql-cluster
+  namespace: cnpg-system
 spec:
   instances: 3
   storage:
     size: 25Gi
-    storageClass: local-postgresql
+    storageClass: local-path
