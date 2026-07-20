@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"**/templates/*.yaml": "yaml",
+		"**/templates/*.tpl": "yaml"
+	},
+	"yaml.validate": false
+}

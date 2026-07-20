@@ -143,6 +143,12 @@ autoscaling:
 
 # Additional volumes on the output Deployment definition.
 volumes:
+  - name: jellyfin-config
+    persistentVolumeClaim:
+      claimName: jellyfin-config-local-path-pvc
+  - name: jellyfin-cache
+    persistentVolumeClaim:
+      claimName: jellyfin-cache-local-path-pvc
   - name: docker-volumes-media
     persistentVolumeClaim:
       claimName: docker-volumes-media-intree-nfs-pvc
@@ -159,6 +165,12 @@ volumeMounts:
   # - name: docker-volumes-media
   #   mountPath: /cache
   #   subPath: jellyfin/cache
+
+  - name: jellyfin-config
+    mountPath: /config
+  - name: jellyfin-cache
+    mountPath: /cache
+
   - name: docker-volumes-media
     mountPath: /media
     subPath: my-media
@@ -166,7 +178,8 @@ volumeMounts:
   #   mountPath: "/etc/foo"
   #   readOnly: true
 
-nodeSelector: {}
+nodeSelector:
+  kubernetes.io/hostname: k8s-cp2
 
 tolerations: []
 
