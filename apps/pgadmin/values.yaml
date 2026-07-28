@@ -11,7 +11,7 @@ image:
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "9.13.0"
+  tag: "9.16"
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
@@ -78,7 +78,7 @@ ingress:
 # (see: https://gateway-api.sigs.k8s.io/guides/)
 httpRoute:
   # HTTPRoute enabled.
-  enabled: true
+  enabled: false
   # HTTPRoute annotations.
   annotations: {}
   # Which Gateways this Route is attached to.
@@ -143,9 +143,9 @@ autoscaling:
 
 # Additional volumes on the output Deployment definition.
 volumes:
-  - name: docker-volumes-apps
+  - name: pgadmin-data
     persistentVolumeClaim:
-      claimName: docker-volumes-apps-intree-nfs-pvc
+      claimName: pgadmin-data-local-path-pvc
   # - name: foo
   #   secret:
   #     secretName: mysecret
@@ -153,9 +153,8 @@ volumes:
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
-  - name: docker-volumes-apps
+  - name: pgadmin-data
     mountPath: /var/lib/pgadmin
-    subPath: pgadmin/data
   # - name: foo
   #   mountPath: "/etc/foo"
   #   readOnly: true
@@ -170,4 +169,7 @@ env:
   - name: PGADMIN_DEFAULT_EMAIL
     value: "jdsevilla1996@gmail.com"
   - name: PGADMIN_DEFAULT_PASSWORD
-    value: "BGuRdYQl2m3go9HmhP5rU3cYi6qPBAXq"
+    valueFrom:
+      secretKeyRef:
+        name: pgadmin-default-password
+        key: PGADMIN_DEFAULT_PASSWORD
